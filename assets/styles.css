@@ -1,6 +1,9 @@
-* { box-sizing: border-box; }
+/* name=styles.css */
+*, *::before, *::after {
+  box-sizing: border-box;
+}
 
-:root{
+:root {
   --bg: #0f1724;
   --card: #0b1220;
   --accent: #7c3aed;
@@ -10,7 +13,7 @@
   --glass: rgba(255,255,255,0.04);
 }
 
-body{
+body {
   margin: 0;
   font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
   background: linear-gradient(180deg, #071023 0%, #07192f 100%);
@@ -20,10 +23,9 @@ body{
   align-items: center;
   justify-content: center;
   padding: 2rem;
-  background-color: var(--bg);
 }
 
-.container{
+.container {
   width: 100%;
   max-width: 860px;
   background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
@@ -32,89 +34,86 @@ body{
   box-shadow: 0 6px 30px rgba(2,6,23,0.6);
 }
 
-h1{ margin: 0 0 0.25rem 0; font-size: 1.6rem; }
+h1 {
+  margin: 0 0 0.25rem 0;
+  font-size: 1.6rem;
+}
 
-.intro{ color: var(--muted); margin-top: 0; }
+.intro {
+  color: var(--muted);
+  margin-top: 0;
+}
 
-.game{ margin-top: 1.25rem; }
+.game {
+  margin-top: 1.25rem;
+}
 
-.sentences{ padding-left: 1.2rem; }
+.sentences {
+  padding-left: 1.2rem;
+}
 
-.sentences li{
+.sentences li {
   margin: 1rem 0;
   display: flex;
   align-items: center;
   gap: 0.5rem;
 }
 
-.text{ color: var(--muted); min-width: 260px; }
+.text {
+  color: var(--muted);
+  min-width: 260px;
+}
 
-.dropzone{
+.dropzone {
+  display: inline-flex; /* substitui conflito entre inline-block e flex */
   min-width: 160px;
   height: 40px;
   background: var(--glass);
   border: 2px dashed rgba(255,255,255,0.06);
   border-radius: 8px;
   padding: 0.35rem 0.5rem;
-  color: #dbeafe;
-  display: flex;
   align-items: center;
   justify-content: center;
   text-align: center;
-  transition: background-color 180ms ease, border-color 180ms ease, box-shadow 180ms ease;
-  outline: none;
+  color: #dbeafe;
+  transition: background .15s ease, border-color .15s ease, box-shadow .15s ease;
 }
 
-.dropzone:focus-visible{
-  box-shadow: 0 0 0 4px rgba(124,58,237,0.16);
+.dropzone.filled {
   border-style: solid;
 }
 
-.dropzone.filled{ border-style: solid; }
-
-.dropzone.correct{
-  background: linear-gradient(90deg, rgba(16,185,129,0.10), rgba(124,58,237,0.02));
-  border-color: rgba(16,185,129,0.28);
+.bank {
+  margin-top: 1.25rem;
 }
 
-.dropzone.wrong{
-  background: rgba(239,68,68,0.08);
-  border-color: rgba(239,68,68,0.28);
-}
-
-.bank{ margin-top: 1.25rem; }
-
-.words{
+.words {
   display: flex;
   gap: 0.5rem;
   flex-wrap: wrap;
 }
 
-.word{
+.word {
   background: linear-gradient(180deg, var(--card), #071126);
   padding: 0.45rem 0.8rem;
   border-radius: 8px;
   cursor: grab;
   user-select: none;
-  -webkit-user-drag: element;
   border: 1px solid rgba(255,255,255,0.04);
-  transition: transform 120ms ease, box-shadow 120ms ease;
 }
 
-.word:active,
-.word[aria-pressed="true"]{
+.word:active {
   cursor: grabbing;
-  transform: translateY(1px) scale(0.995);
 }
 
-.controls{
+.controls {
   margin-top: 1rem;
   display: flex;
   align-items: center;
   gap: 0.75rem;
 }
 
-button{
+button {
   background: var(--accent);
   border: none;
   color: white;
@@ -123,12 +122,25 @@ button{
   cursor: pointer;
 }
 
-button#reset{
+button#reset {
   background: transparent;
   border: 1px solid rgba(255,255,255,0.06);
+}
+
+.result {
+  margin-left: 1rem;
   color: var(--muted);
 }
 
-button:hover{ filter: brightness(1.05); }
+/* estado correto/errado das dropzones */
+.dropzone.correct {
+  background: linear-gradient(90deg, rgba(16,185,129,0.06), rgba(124,58,237,0.04));
+  border-color: rgba(16,185,129,0.45);
+  box-shadow: 0 4px 18px rgba(16,185,129,0.06);
+}
 
-.result{ margin-left: 1rem; color: var(--muted); }
+.dropzone.incorrect {
+  background: linear-gradient(90deg, rgba(239,68,68,0.06), rgba(11,17,32,0.02));
+  border-color: rgba(239,68,68,0.45);
+  box-shadow: 0 4px 18px rgba(239,68,68,0.06);
+}
